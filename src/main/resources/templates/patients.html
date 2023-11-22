@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,11 +11,12 @@
     <link rel="stylesheet" href="/webjars/bootstrap-icons/1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
-<div class="p-3">
+<div layout:fragment="content1">
+ <div class="container mt-2">
     <div class="card">
         <div class="card-header">Liste Patients</div>
         <div class="card-body">
-            <form method="get" th:action="@{index}">
+            <form method="get" th:action="@{/user/index}">
                 <label>Keyword:</label>
                 <input type="text" name="keyword" th:value="${keyword}">
                 <button type="submit" class="btn btn-info">
@@ -34,11 +38,16 @@
                 <td th:text="${p.dateNaissance}"></td>
                 <td th:text="${p.malade}"></td>
                 <td th:text="${p.score}"></td>
-                <td>
+                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                     <a onclick="javascript:return confirm('Etes vous sure?')"
-                       th:href="@{delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}"
+                       th:href="@{/admin/delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}"
                        class="btn btn-danger">
                         <i class="bi bi-trash"></i>
+                    </a>
+
+                    <a th:href="@{/admin/editPatient(id=${p.id}, keyword=${keyword}, page=${currentPage})}"
+                       class="btn btn-success">
+                        <i class="bi bi-pencil"></i>
                     </a>
                 </td>
             </tr>
@@ -46,16 +55,16 @@
         </table>
         <ul class="nav nav-pills">
             <li th:each="value,item:${pages}">
-                <a th:href="@{/index(page=${item.index}, keyword=${keyword})}"
+                <a th:href="@{/user/index(page=${item.index}, keyword=${keyword})}"
                    th:class="${currentPage==item.index?'btn btn-info ms-1':'btn btn-outline-info ms-1'}"
                    class="btn btn-outline-info"
                    th:text="${item.index}"></a>
             </li>
         </ul>
+     </div>
     </div>
-    </div>
+ </div>
 </div>
-
 
 </body>
 </html>
