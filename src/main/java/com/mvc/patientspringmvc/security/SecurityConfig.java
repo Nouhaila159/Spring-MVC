@@ -1,5 +1,4 @@
 package com.mvc.patientspringmvc.security;
-
 import com.mvc.patientspringmvc.security.service.UserDetailServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +14,18 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
-
-@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)
-@AllArgsConstructor
+@Configuration @EnableWebSecurity @EnableMethodSecurity(prePostEnabled = true) @AllArgsConstructor
 public class SecurityConfig {
     private PasswordEncoder passwordEncoder;
     private UserDetailServiceImpl userDetailServiceImpl;
     //@Bean
     public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource){
-        return new JdbcUserDetailsManager(dataSource);
-    }
+        return new JdbcUserDetailsManager(dataSource);}
     //@Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager(){
-        return new InMemoryUserDetailsManager(
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager(){return new InMemoryUserDetailsManager(
                 User.withUsername("user1").password(passwordEncoder.encode("1234")).roles("USER").build(),
                 User.withUsername("user2").password(passwordEncoder.encode("1234")).roles("USER").build(),
-                User.withUsername("admin").password(passwordEncoder.encode("1234")).roles("USER","ADMIN").build()
-        );
-
-    }
+                User.withUsername("admin").password(passwordEncoder.encode("1234")).roles("USER","ADMIN").build());}
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll();
@@ -46,6 +36,5 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
         httpSecurity.exceptionHandling().accessDeniedPage("/notAuthorized");
         httpSecurity.userDetailsService(userDetailServiceImpl);
-        return httpSecurity.build();
-    }
+        return httpSecurity.build();}
 }

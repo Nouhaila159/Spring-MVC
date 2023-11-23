@@ -27,7 +27,7 @@ public class PatientController {
     @GetMapping(path = "/user/index")
     public String index(Model model,
                         @RequestParam(name = "page",defaultValue = "0") int page,
-                        @RequestParam(name = "size",defaultValue = "5") int size,
+                        @RequestParam(name = "size",defaultValue = "4") int size,
                         @RequestParam(name = "keyword",defaultValue = "") String keyword)
     {
         Page<Patient> pagePatient = patientRepository.findByNomContains(keyword, PageRequest.of(page,size));
