@@ -97,6 +97,7 @@ private PasswordEncoder passwordEncoder; : Un bean qui encode les mots de passe.
 private UserDetailServiceImpl userDetailServiceImpl; : Un service personnalisé qui implémente l'interface UserDetailsService. Ce service est utilisé pour récupérer les détails de l'utilisateur, notamment lors de l'authentification.
 </li>
 </ul>
+<br>
 <p>
 La classe SecurityConfig agit comme une configuration centralisée pour la sécurité de l'application Spring. Elle définit les stratégies d'authentification, les gestionnaires de détails d'utilisateurs, et configure la sécurité des requêtes HTTP. La classe utilise une combinaison de configurations en mémoire (InMemoryUserDetailsManager) et basées sur une base de données (JdbcUserDetailsManager). Elle spécifie également des règles d'autorisation pour certaines URL, la gestion des sessions, la redirection en cas d'erreurs d'accès, et elle configure le service UserDetailServiceImpl comme gestionnaire des détails d'utilisateur personnalisé. En résumé, elle orchestre l'ensemble des mécanismes de sécurité de l'application web.
 </p>
@@ -164,19 +165,23 @@ Affichage des données dans MySQL avec UserDetailsService : </li>
 Cette section essentielle de notre application se concentre sur la gestion minutieuse des droits d'accès, jouant un rôle fondamental dans la sécurité globale. Grâce à l'usage avisé de Spring Security, notre configuration permet une gestion précise des autorisations, notamment en définissant des règles spécifiques pour l'accès à des ressources telles que les Webjars et la console H2. La classe SecurityConfig offre une souplesse notable en permettant la définition de règles basées sur les rôles des utilisateurs, facilitée par les méthodes hasRole("USER") et hasRole("ADMIN").
 </p>
 <ul>
+<strong>
 <li>
 Personnalisation du Processus de Connexion avec: "httpSecurity.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll();" </li>
-
+</strong>
+<br>
 <strong>httpSecurity.formLogin() :</strong> Active la gestion du processus de connexion fourni par Spring Security.
 <strong> .loginPage("/login") : </strong>  Spécifie la page de connexion personnalisée. Plutôt que d'utiliser la page de connexion par défaut fournie par Spring Security, l'application redirigera les utilisateurs vers la page spécifiée ("/login") lorsqu'une authentification est requise.
 <strong> .defaultSuccessUrl("/") :</strong>  Définit l'URL par défaut vers laquelle un utilisateur est redirigé après une connexion réussie. Dans ce cas, l'utilisateur est redirigé vers la page principale ("/").
 <strong> .permitAll() : </strong> Autorise l'accès à la page de connexion spécifiée par n'importe quel utilisateur, même s'il n'est pas authentifié. Cela garantit que la page de connexion est accessible à tous, même à ceux qui ne sont pas encore connectés.
 <h6>Login Page generée par defaut:</h6>
 <img src="captures/signin_spring.png">
-<h6>Login Page personnalisé:</h6>
+<h6>Login Page personnalisée:</h6>
 <img src="captures/signin_perso.png">
+<strong>
 <li>
 Gestion Conditionnelle de l'Affichage Selon le Rôle de l'Utilisateur : </li>
+</strong>
 <p>
 Dans la classe PatientController, l'affichage des patients est géré de manière conditionnelle en fonction du rôle de l'utilisateur. Les méthodes telles que delete, editPatient, formPatient, et save sont annotées avec @PreAuthorize("hasRole('ROLE_ADMIN')"), ce qui signifie que seuls les utilisateurs ayant le rôle d'administrateur peuvent accéder à ces fonctionnalités. Par conséquent, l'affichage et l'accès à certaines fonctionnalités de gestion des patients sont restreints aux utilisateurs ayant le rôle spécifique d'administrateur. Cela garantit une expérience utilisateur sécurisée et adaptée en fonction du rôle attribué à chaque utilisateur dans le système.
 </p>
