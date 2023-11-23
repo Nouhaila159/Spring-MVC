@@ -192,6 +192,7 @@ Dans la classe PatientController, l'affichage des patients est géré de manièr
 <p>
 Et si un utilisateur tente d'accéder à une ressource pour laquelle il n'a pas les autorisations nécessaires, il sera redirigé vers la page définie, ici /notAuthorized, comme dans ce cas là:
 </p>
+<img src="captures/user_delete.png">
 <img src="captures/notAuto.png">
 </ul>
 </ul>
