@@ -167,7 +167,7 @@ Cette section essentielle de notre application se concentre sur la gestion minut
 <ul>
 <strong>
 <li>
-Personnalisation du Processus de Connexion avec: "httpSecurity.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll();" </li>
+Personnalisation du Processus de Connexion avec "httpSecurity.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll();" </li>
 </strong>
 <br>
 <strong>httpSecurity.formLogin() :</strong> Active la gestion du processus de connexion fourni par Spring Security.
