@@ -174,6 +174,7 @@ Personnalisation du Processus de Connexion avec "httpSecurity.formLogin().loginP
 <strong> .loginPage("/login") : </strong>  Spécifie la page de connexion personnalisée. Plutôt que d'utiliser la page de connexion par défaut fournie par Spring Security, l'application redirigera les utilisateurs vers la page spécifiée ("/login") lorsqu'une authentification est requise.
 <strong> .defaultSuccessUrl("/") :</strong>  Définit l'URL par défaut vers laquelle un utilisateur est redirigé après une connexion réussie. Dans ce cas, l'utilisateur est redirigé vers la page principale ("/").
 <strong> .permitAll() : </strong> Autorise l'accès à la page de connexion spécifiée par n'importe quel utilisateur, même s'il n'est pas authentifié. Cela garantit que la page de connexion est accessible à tous, même à ceux qui ne sont pas encore connectés.
+<img src="captures/secuConfigLogin.png">
 <h6>Login Page generée par defaut:</h6>
 <img src="captures/signin_spring.png">
 <h6>Login Page personnalisée:</h6>
