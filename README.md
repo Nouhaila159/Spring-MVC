@@ -1,5 +1,5 @@
 <p>Realisée par : DANOUNI NOUHAILA</p>
-<p>________________________________________________________________________________________________________________
+<p>__________________________________________________________________________________________________________
 <h1>Rapport de TP N° 3_4 : Projet Spring Boot avec Spring Security</h1>
 <h2>Development Web JEE Spring MVC</h2>
 <h2>Introduction</h2>
@@ -38,6 +38,8 @@ Lombok, Thymeleaf</li>
 <li>UserDetailsService</li>
 </ul>
 </ol>
+<h2>Architecture Spring MVC avec Thymeleaf</h2>
+<img src="captures/archi.png" alt="arch">
 <h2>Conception</h2>
 <img src="captures/conception.png" alt="conception image">
 <h2>Réalisation</h2>
